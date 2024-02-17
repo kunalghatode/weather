@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cerulean/bootstrap.min.css"
+    integrity="sha512-dQLT/B7byn2LjN/DN4zeBKpwGV6qbidV0XiMRWQOL7TGrV7FkZFldkGG+DGMU+CQnMTcRZlUI7GMWt1j6akNew=="
+    crossorigin="anonymous" />
+  <title>Skye - The Weather App</title>
+</head>
+
+<body>
+  <div id="jumbotron" class="jumbotron" style="text-align: center; margin-top:-85px; height: 125px; background-color: rgb(228, 228, 228);">
+    <h1 class="display-5 my-3" style="color:rgb(1, 1, 103); font-weight: 900;">Skye - Weather App</h1>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info" style="border: 2px solid black; border-radius: 15px;">
+    <form method="post" class="col-md">
+      {% csrf_token %}
+      <div class=" input-group">
+      <input type="text" class="form-control" name="city" placeholder="Choose Your City ..." style="border: 2px solid black; border-radius: 5px;">
+      <div class="input-group-btn" style="margin-left: 25px;">
+        <button type="submit" class="btn" style="border: 2px solid black; background-color: rgb(15, 26, 55); color: white;">Search</button>
+      </div>
+      </div>
+      <form>
+    </div>
+  </nav>
+  <br>
+  <h1 class="text-center" style="color:rgb(1, 1, 103); font-weight: bold; margin-top: 20px;" >{{city}}</h1><br>
+  <div class="row" style="margin-right: 0px; margin-top: -15px;">
+    {% if country_code and coordinate and temp and pressure and humidity %}
+    <div class="col d-flex justify-content-center">
+      <div class=" card text-white" style="border: 1px solid black; margin-bottom: 10px; background-color: rgb(228, 228, 228);">
+      <div class=" card-body">
+        <h4 style="color:darkblue"><span class="badge badge-primary" style="background-color: rgb(15, 26, 55);">Country Code :</span> {{country_code}}</h4>
+        <h4 style="color:darkblue"><span class="badge badge-primary" style="background-color: rgb(15, 26, 55);">Coordinates [X,Y] :</span> {{coordinate}}</h4>
+        <h4 style="color:darkblue"><span class="badge badge-primary" style="background-color: rgb(15, 26, 55);">Temperature in Celsius :</span> {{temp}}</h4>
+        <h4 style="color:darkblue"><span class="badge badge-primary" style="background-color: rgb(15, 26, 55);">Pressure :</span> {{pressure}} </h4>
+        <h4 style="color:darkblue"><span class="badge badge-primary" style="background-color: rgb(15, 26, 55);">Humidity : </span> {{humidity}}</h4>
+        <h4 style="color:darkblue"><span class="badge badge-primary" style="background-color: rgb(15, 26, 55);">Forecast : </span> {{main}} <img
+            src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+        <h4 style="color:darkblue"><span class="badge badge-primary" style="background-color: rgb(15, 26, 55);">Description : </span> {{description}}</h4>
+      </div>
+      {% endif %}
+    </div>
+</body>
+
+</html>
